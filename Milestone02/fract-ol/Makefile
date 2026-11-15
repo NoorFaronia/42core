@@ -1,26 +1,60 @@
-NAME = push_swap
+# Program name
+NAME = fractol
 
+# Compiler
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = push_swap.c ft_error_cases_and_build.c ft_split.c ft_stack.c ft_units.c ft_swap.c ft_push.c ft_rotate.c ft_reverse_rotate.c ft_sort_small.c ft_radix_sort.c
+# Sources
+SRC = src/fractol.c src/utils.c src/julia.c src/mandelbrot.c src/colorful_img.c src/hook.c src/close.c
 
-OBJ = $(SRC:.c=.o)
+# Objects
+OBJS = $(SRC:.c=.o)
 
-all: $(NAME)
+# Libft
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+# MiniLibX (Linux)
+MLX_DIR = minilibx-linux
+MLX = $(MLX_DIR)/libmlx.a
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
+# Includes
+INC = -Ilibft -Iminilibx-linux -Iinclude
+
+# Default rule
+all: $(LIBFT) $(MLX) $(NAME)
+
+# Build program
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+
+# Compile .c to .o
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
+# Libft compilation
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+# MLX compilation
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
+
+# Clean object files
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
+# Full clean
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(MLX_DIR) clean
 
+# Recompile
 re: fclean all
 
 .PHONY: all clean fclean re

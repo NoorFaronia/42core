@@ -1,82 +1,53 @@
 *This project has been created as part of the 42 curriculum by nfaronia.*
 
-# push_swap
+# fract-ol
 
-## Description
-**push_swap** is a sorting algorithm project where the goal is to sort a list of integers using two stacks (Stack A and Stack B) and a limited set of operations. The challenge is to sort the numbers in ascending order with the fewest possible operations.
+## 📝 Description
+**fract-ol** is a graphical program that visualizes fractals, specifically the Mandelbrot and Julia sets.
+The program allows interactive exploration of these fractals, including zooming, and changing parameters for Julia sets.
 
-## Instructions
+## 📌 Instructions
 
-### Compilation
+### 🛠️ Compilation
 To compile the project, run:
 ```
 make
 ```
-This will generate the executable push_swap.
+This will generate the executable `fractol`.
+Dependencies:
+- `MiniLibX` library
 
-Additional Makefile rules:
+### 💻 Execution
+Run the program with one of the following options:
+**Mandelbrot set**:
 ```
-make clean    # remove object files
-make fclean   # remove object files and executable
-make re       # recompile the project
+./fractol mandelbrot
 ```
+**Julia set**:
+```
+./fractol julia
+./fractol julia <real_part> <imaginary_part>
+```
+- If no parameters are provided for Julia, it uses default values.
 
-### Execution
-Run the program with a list of integers as arguments:
-```
-./push_swap 3 2 5 1 4
-```
-The program will output a list of operations such as:
-```
-ra
-ra
-ra
-pb
-ra
-ra
-pb
-sa
-rra
-pa
-pa
-```
-These operations, when executed in order, will sort the stack.
+**Controls** (default with MiniLibX):
+- Mouse scroll: Zoom in/out
+- Arrow keys: Move the view
+- ESC key: Exit program
 
-### Checker
-To verify that the output correctly sorts the numbers, you can use the checker:
-```
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
-```
-If the result is correct, the checker will display:
-```
-OK
-```
-If the result is not correct, the checker will display:
-```
-KO
-```
-### Number of Lines
-```
-ARG="4 67 3 87 23"; ./push_swap $ARG | wc-l
-```
-The output will be:
-```
-9
-```
+## 🗃️ Resources
 
-## Resources
+### 📚 References
+- 42 minitalk subject
+- MiniLibX
+  - [MiniLibX docs42](https://harm-smits.github.io/42docs/libs/minilibx)
+  - [Basic introduction](https://gontjarow.github.io/MiniLibX/)
+- [fractol](https://www.geeksforgeeks.org/computer-graphics/fractals-in-cc/)
+- [Mandelbrot](https://www.geeksforgeeks.org/cpp/mandlebrot-set-in-c-c-using-graphics/)
+- Julia
+  - [Julia Examples](https://paulbourke.net/fractals/juliaset/)
+  - [Implementation](https://rosettacode.org/wiki/Julia_set)
 
-### References
-- 42 push_swap subject
-- **Linked list & stack:**
-  - [Linked List Explanation](https://youtu.be/VOpjAHCee7c?si=x5iqZk2ciHj2qXNe)
-  - [Stack Implementation Tutorial](https://youtu.be/A4sRhuGkRb0?si=A489n2RR3qWUCSeC)
-  - [Stack Using Linked List in C](https://www.geeksforgeeks.org/c/stack-using-linked-list-in-c/)
-- **Radix Sort:**
-  - [Radix Sort Algorithm](https://www.geeksforgeeks.org/dsa/radix-sort/)
-  - [Radix Sort Using Array of Linked Lists](https://stackoverflow.com/questions/67750089/radix-sort-using-array-of-linked-list-as-bin-in-c)
-  - [Bubble Sort](https://www.geeksforgeeks.org/dsa/bubble-sort-algorithm/)
-
-### AI Usage
+### 🤖 AI Usage
 
 AI tools were used as a learning aid to help find study resources, understand algorithms, and clarify edge cases.

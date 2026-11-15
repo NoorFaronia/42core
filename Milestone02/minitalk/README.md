@@ -1,18 +1,35 @@
 *This project has been created as part of the 42 curriculum by nfaronia.*
 
-# push_swap
+# 📡 Minitalk
 
-## Description
-**push_swap** is a sorting algorithm project where the goal is to sort a list of integers using two stacks (Stack A and Stack B) and a limited set of operations. The challenge is to sort the numbers in ascending order with the fewest possible operations.
+## 🚀 Description
+**Minitalk** is a small interprocess communication project that teaches sending messages between processes using **UNIX signals**.
 
-## Instructions
+The project consists of:
 
-### Compilation
+- A **server** that receives messages
+- A **client** that sends messages
+
+The client sends each character **bit by bit** using `SIGUSR1` and `SIGUSR2`, and the server reconstructs the message and prints it to the standard output.
+
+## 🛠️ Instructions
+
+### 🛠️ Compilation
 To compile the project, run:
 ```
 make
 ```
-This will generate the executable push_swap.
+This will generate two executables:
+- server
+- client
+
+To compile the Bonus, run:
+```
+make bonus
+```
+This will generate two executables:
+- server_bonus
+- client_bonus
 
 Additional Makefile rules:
 ```
@@ -21,62 +38,55 @@ make fclean   # remove object files and executable
 make re       # recompile the project
 ```
 
-### Execution
-Run the program with a list of integers as arguments:
+### 💻 Execution
+**Server**
 ```
-./push_swap 3 2 5 1 4
+./server
 ```
-The program will output a list of operations such as:
+The server will display its PID, which is required by the client.
+**Client**
+Run the client with the server PID and a message:
 ```
-ra
-ra
-ra
-pb
-ra
-ra
-pb
-sa
-rra
-pa
-pa
+./client <server_pid> "minitalk!"
 ```
-These operations, when executed in order, will sort the stack.
+The client will send the message to the server using UNIX signals.
 
-### Checker
-To verify that the output correctly sorts the numbers, you can use the checker:
+**🎉 Example Output**
 ```
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
-```
-If the result is correct, the checker will display:
-```
-OK
-```
-If the result is not correct, the checker will display:
-```
-KO
-```
-### Number of Lines
-```
-ARG="4 67 3 87 23"; ./push_swap $ARG | wc-l
-```
-The output will be:
-```
-9
+📱  MINITALK SERVER BONUS
+📡 PID: 19009
+✅ Server initialized successfully.
+⚠️ NOTE : Press Ctrl+C to exit.
+⏳ Waiting for messages...
+
+minitalk
 ```
 
-## Resources
+### 📡 Communication
+```
+SIGUSR1 → 0
+SIGUSR2 → 1
+```
+- Each character is sent bit by bit
+- The server reconstructs characters and prints the received message
 
-### References
-- 42 push_swap subject
-- **Linked list & stack:**
-  - [Linked List Explanation](https://youtu.be/VOpjAHCee7c?si=x5iqZk2ciHj2qXNe)
-  - [Stack Implementation Tutorial](https://youtu.be/A4sRhuGkRb0?si=A489n2RR3qWUCSeC)
-  - [Stack Using Linked List in C](https://www.geeksforgeeks.org/c/stack-using-linked-list-in-c/)
-- **Radix Sort:**
-  - [Radix Sort Algorithm](https://www.geeksforgeeks.org/dsa/radix-sort/)
-  - [Radix Sort Using Array of Linked Lists](https://stackoverflow.com/questions/67750089/radix-sort-using-array-of-linked-list-as-bin-in-c)
-  - [Bubble Sort](https://www.geeksforgeeks.org/dsa/bubble-sort-algorithm/)
+### ✨ Bonus
+- Message acknowledgment from the server to the client
+- Unicode character support
+- Improved error handling
 
-### AI Usage
+## 📚 Resources
+
+### 📚 References
+- 42 minitalk subject
+- Unix Signal Documentation
+  - man 2 kill – sending signals to processes
+  - man 2 sigaction – setting up signal handlers
+  - man 7 signal – overview of signals
+  - man 2 getpid – retrieve process ID
+- [Signal Handling In Linux](https://www.geeksforgeeks.org/linux-unix/signal-handling-in-linux-through-the-signal-function/)
+
+### 🤖 AI Usage
 
 AI tools were used as a learning aid to help find study resources, understand algorithms, and clarify edge cases.
+
